@@ -22,13 +22,14 @@ def load_select_tables_from_database() -> None:
     # credentials = ConnectionStringCredentials(
     #     "mysql+pymysql://rfamro@mysql-rfam-public.ebi.ac.uk:4497/Rfam"
     # )
-    credentials = dlt.secrets.get("sources.sql_database.credentials")
+    # This line is also not required. If using it, ensure the pass it in sql_database()
+    # credentials = dlt.secrets.get("sources.sql_database.credentials")
 
     # To pass the credentials from `secrets.toml`, comment out the above credentials.
     # And the credentials will be automatically read from `secrets.toml`.
 
     # Configure the source to load a few select tables incrementally
-    source_1 = sql_database(credentials).with_resources("family", "clan").parallelize()
+    source_1 = sql_database().with_resources("family", "clan").parallelize()
 
     # Add incremental config to the resources. "updated" is a timestamp column in these tables that gets used as a cursor
     source_1.family.apply_hints(incremental=dlt.sources.incremental("updated"))
@@ -40,14 +41,14 @@ def load_select_tables_from_database() -> None:
 
     # Load some other tables with replace write disposition. This overwrites the existing tables in destination
     source_2 = (
-        sql_database(credentials).with_resources("features", "author").parallelize()
+        sql_database().with_resources("features", "author").parallelize()
     )
     info = pipeline.run(source_2, write_disposition="replace")
     print(info)
 
     # Load a table incrementally with append write disposition
     # this is good when a table only has new rows inserted, but not updated
-    source_3 = sql_database(credentials).with_resources("genome").parallelize()
+    source_3 = sql_database().with_resources("genome").parallelize()
     source_3.genome.apply_hints(incremental=dlt.sources.incremental("created"))
 
     info = pipeline.run(source_3, write_disposition="append")
