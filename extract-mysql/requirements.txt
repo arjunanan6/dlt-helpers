@@ -1,6 +1,6 @@
 dlt==1.6.1
 dlt[sql_database]==1.6.1
-dlt[duckdb]
+dlt[duckdb]==1.6.1
 dlt[parquet]==1.6.1
-psutil
-pymysql
+psutil==7.0.0
+PyMySQL==1.1.1
