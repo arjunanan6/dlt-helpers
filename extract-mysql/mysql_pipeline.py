@@ -48,7 +48,7 @@ def load_select_tables_from_database() -> None:
 
     # Load a table incrementally with append write disposition
     # this is good when a table only has new rows inserted, but not updated
-    source_3 = sql_database().with_resources("genome").parallelize()
+    source_3 = sql_database().with_resources("genome")
     source_3.genome.apply_hints(incremental=dlt.sources.incremental("created"))
 
     info = pipeline.run(source_3, write_disposition="append")
