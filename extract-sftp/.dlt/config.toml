@@ -1,0 +1,10 @@
+[runtime]
+log_level="WARNING"
+
+
+[sources.filesystem]
+bucket_url = "sftp://localhost"
+
+[destination.filesystem]
+bucket_url = 'downloaded_files'
+

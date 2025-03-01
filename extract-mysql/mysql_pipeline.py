@@ -1,6 +1,5 @@
 import dlt
 from dlt.sources.credentials import ConnectionStringCredentials
-
 from dlt.sources.sql_database import sql_database
 
 

@@ -2,7 +2,7 @@ import dlt
 from dlt.sources.sql_database import sql_database
 
 
-def try_incr():
+def load_incrementally():
     """Attempt to load incrementally"""
 
     # Set up the connection credentials
@@ -29,4 +29,4 @@ def try_incr():
 
 
 if __name__ == "__main__":
-    try_incr()
+    load_incrementally()
