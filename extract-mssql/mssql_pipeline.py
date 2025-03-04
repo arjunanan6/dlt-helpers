@@ -7,7 +7,11 @@ def load_incrementally():
 
     # Set up the connection credentials
     # Local db running off of: https://hub.docker.com/r/microsoft/azure-sql-edge
-    credentials = "mssql+pyodbc://SA:MyPass%40word@localhost:1433/arjun?driver=ODBC+Driver+18+for+SQL+Server&TrustServerCertificate=yes"
+    ccredentials = (
+        "mssql+pyodbc://SA:MyPass%40word@127.0.0.1:1433/arjun"
+        "?driver=ODBC+Driver+18+for+SQL+Server"
+        "&TrustServerCertificate=yes"
+    )
 
     source = sql_database(credentials=credentials, schema="dbo").with_resources("replicate_test")
     
