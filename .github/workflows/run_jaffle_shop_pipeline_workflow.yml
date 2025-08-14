@@ -1,7 +1,7 @@
 name: Run jaffle_shop_pipeline pipeline from api_pipeline.py
 'on':
   schedule:
-  - cron: '*/30 * * * *'
+  - cron: '0 12 * * 1'
   workflow_dispatch: null
 env: {}
 jobs:
